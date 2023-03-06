@@ -14,6 +14,6 @@ Members: el21711, el19871, el19877, el10191
 | database | MongoDB |
 | CLI | Python3 click
 
-
+For more info read the READMEs inside the folders
 
 
