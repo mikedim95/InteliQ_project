@@ -1,0 +1,192 @@
+{
+    "questionnaireID": "QQ001",
+    "questionnaireTitle": "My second research questionnaire",
+    "keywords": [
+        "coffee",
+        "Electrican Engineering",
+        "Software Engineering"
+    ],
+    "questions": [
+        {
+            "qID": "Q00",
+            "qtext": "Σε ποιό έτος βρίσκεστε;",
+            "required": "TRUE",
+            "istype": "question",
+            "options": [
+                {
+                    "optID": "OPT_00_1",
+                    "opttxt": "1",
+                    "nextqID": "Q01"
+                },
+                {
+                    "optID": "OPT_00_2",
+                    "opttxt": "2",
+                    "nextqID": "Q01"
+                },
+                {
+                    "optID": "OPT_00_3",
+                    "opttxt": "3",
+                    "nextqID": "Q02"
+                },
+                {
+                    "optID": "OPT_00_4",
+                    "opttxt": "4",
+                    "nextqID": "Q02"
+                },
+                {
+                    "optID": "OPT_00_5",
+                    "opttxt": "5",
+                    "nextqID": "Q02"
+                }
+            ]
+        },
+        {
+            "qID": "Q01",
+            "qtext": "Με βάση την λιγότερο απο δύο χρόνια εμπειρία σας βρίσκετε ενδιαφέροντα τα μαθήματα της σχολής;",
+            "required": "TRUE",
+            "istype": "question",
+            "options": [
+                {
+                    "optID": "OPT_01_1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q03"
+                },
+                {
+                    "optID": "OPT_O1_2",
+                    "opttxt": "Οχι",
+                    "nextqID": "Q03"
+                }
+            ]
+        },
+        {
+            "qID": "Q02",
+            "qtext": "Ποια κατεύθυνση έχετε επιλέξει;",
+            "required": "TRUE",
+            "istype": "question",
+            "options": [
+                {
+                    "optID": "OPT_02_1",
+                    "opttxt": "Πληροφορικής",
+                    "nextqID": "Q04"
+                },
+                {
+                    "optID": "OPT_02_2",
+                    "opttxt": "Ενέργειας",
+                    "nextqID": "Q03"
+                },
+                {
+                    "optID": "OPT_02_3",
+                    "opttxt": "Επικοινωνίων",
+                    "nextqID": "Q03"
+                },
+                {
+                    "optID": "OPT_02_4",
+                    "opttxt": "Ηλεκτρονικής",
+                    "nextqID": "Q03"
+                }
+            ]
+        },
+        {
+            "qID": "Q03",
+            "qtext": "Πίνετε καφέ;",
+            "required": "TRUE",
+            "istype": "question",
+            "options": [
+                {
+                    "optID": "OPT_O3_1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q05"
+                },
+                {
+                    "optID": "OPT_03_2",
+                    "opttxt": "Οχι",
+                    "nextqID": "Q06"
+                }
+            ]
+        },
+        {
+            "qID": "Q04",
+            "qtext": "Σκοπεύετε να επιλέξετε το μάθημα της Τεχνολογίας Λογισμικού;",
+            "required": "TRUE",
+            "istype": "question",
+            "options": [
+                {
+                    "optID": "OPT_O4_1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q07"
+                },
+                {
+                    "optID": "OPT_04_2",
+                    "opttxt": "Όχι",
+                    "nextqID": "Q07"
+                }
+            ]
+        },
+        {
+            "qID": "Q05",
+            "qtext": "Σας αρέσει ο καφές της σχολής",
+            "required": "TRUE",
+            "istype": "question",
+            "options": [
+                {
+                    "optID": "OPT_05_1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q07"
+                },
+                {
+                    "optID": "OPT_O5_2",
+                    "opttxt": "Οχι",
+                    "nextqID": "Q07"
+                }
+            ]
+        },
+        {
+            "qID": "Q06",
+            "qtext": "Ποιό ρόφημα προτιμάτε;",
+            "required": "TRUE",
+            "istype": "question",
+            "options": [
+                {
+                    "optID": "OPT_06_1",
+                    "opttxt": "Τσάι",
+                    "nextqID": "Q07"
+                },
+                {
+                    "optID": "OPT_06_2",
+                    "opttxt": "Χυμό",
+                    "nextqID": "Q07"
+                }
+            ]
+        },
+        {
+            "qID": "Q07",
+            "qtext": "Τι ομάδα είστε;",
+            "required": "TRUE",
+            "istype": "question",
+            "options": [
+                {
+                    "optID": "OPT_07_1",
+                    "opttxt": "Παναθηναϊκός",
+                    "nextqID": "-"
+                },
+                {
+                    "optID": "OPT_07_2",
+                    "opttxt": "Ολυμπιακός",
+                    "nextqID": "-"
+                },
+                {
+                    "optID": "OPT_07_3",
+                    "opttxt": "ΑΕΚ",
+                    "nextqID": "-"
+                },
+                {
+                    "optID": "OPT_07_4",
+                    "opttxt": "Άλλο",
+                    "nextqID": "-"
+                }
+            ]
+        }
+    ],
+    "_id": "63bd48c075fc94a6922443dd",
+    "__v": 0
+}

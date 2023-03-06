@@ -1,0 +1,745 @@
+{
+	"info": {
+		"_postman_id": "3fda91bf-a8fe-4694-bb42-aa21213d651a",
+		"name": "Softeng22_50",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25855353"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.globals.set(\"questionnaireID\",\"QQ000\")",
+							"pm.globals.set(\"atQuestion\",0)",
+							"pm.globals.set(\"numOfQuestions\",11)",
+							"pm.globals.set(\"questionID\",\"P00\")",
+							"pm.globals.set(\"session\",\"ZZZZ\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/admin/healthcheck",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get  Questionnaire",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// const response = pm.response.json();",
+							"// // pm.globals.set(\"numOfQuestions\",response[\"questions\"].length);",
+							"",
+							"const response= pm.response.json();",
+							"pm.globals.set(\"questionID\", response[\"questions\"][pm.globals.get(\"atQuestion\")][\"qID\"]);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/questionnaire/:questionnaireID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"questionnaire",
+						":questionnaireID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "{{questionnaireID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Non Valid Questionnaire(Get  Questionnaire)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 402 for Non valid questionnaire\",()=>{pm.response.to.have.status(402)})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/questionnaire/:questionnaireID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"questionnaire",
+						":questionnaireID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "NVV"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Question",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const response= pm.response.json();",
+							"",
+							"pm.globals.set(\"session\",\"testingSession\");",
+							"",
+							"if(response[\"istype\"]==\"question\")",
+							"{",
+							"    const len= response[\"options\"].length;",
+							"    let randomNum=Math.floor(Math.random()*len);",
+							"    pm.globals.set(\"optionID\",response[\"options\"][randomNum][\"optID\"]);",
+							"}",
+							"else",
+							"{",
+							"    pm.globals.set(\"optionID\",\"BASE ANSWER\")",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/question/:questionnaireID/:questionID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"question",
+						":questionnaireID",
+						":questionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "{{questionnaireID}}"
+						},
+						{
+							"key": "questionID",
+							"value": "{{questionID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Non Valid Question(Get Question)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 402 Non valid question\", function () {",
+							"    pm.response.to.have.status(402);",
+							"});",
+							"",
+							"// const response= pm.response.json();",
+							"",
+							"// if(response[\"istype\"]==\"question\")",
+							"// {",
+							"//     const len= response[\"options\"].length;",
+							"//     let randomNum=Math.floor(Math.random()*len);",
+							"//     pm.globals.set(\"optionID\",response[\"options\"][randomNum]);",
+							"// }",
+							"// else",
+							"// {",
+							"//     pm.globals.set(\"optionID\",\"BASE ANSWER\")",
+							"// }",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/question/:questionnaireID/:questionID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"question",
+						":questionnaireID",
+						":questionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "{{questionnaireID}}"
+						},
+						{
+							"key": "questionID",
+							"value": "NVV"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Non valid Questionnaire(Get Question)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 402 for non valid questionnaire\", function () {",
+							"    pm.response.to.have.status(402);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/question/:questionnaireID/:questionID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"question",
+						":questionnaireID",
+						":questionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "NVV"
+						},
+						{
+							"key": "questionID",
+							"value": "{{questionID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Answer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"const response=pm.response.json();",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/doanswer/:questionnaireID/:questionID/:session/:optionID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"doanswer",
+						":questionnaireID",
+						":questionID",
+						":session",
+						":optionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "{{questionnaireID}}"
+						},
+						{
+							"key": "questionID",
+							"value": "{{questionID}}"
+						},
+						{
+							"key": "session",
+							"value": "{{session}}"
+						},
+						{
+							"key": "optionID",
+							"value": "{{optionID}} "
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Non valid questionnaire(Submit Answer)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 402 for non valid questionnaire\", function () {",
+							"    pm.response.to.have.status(402);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/doanswer/:questionnaireID/:questionID/:session/:optionID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"doanswer",
+						":questionnaireID",
+						":questionID",
+						":session",
+						":optionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "NVV"
+						},
+						{
+							"key": "questionID",
+							"value": "{{questionID}}"
+						},
+						{
+							"key": "session",
+							"value": "{{session}}"
+						},
+						{
+							"key": "optionID",
+							"value": "{{optionID}} "
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Non valid question(Submit Answer)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 402 for non valid question\", function () {",
+							"    pm.response.to.have.status(402);",
+							"});",
+							"",
+							"pm.globals.set(\"atQuestion\",pm.globals.get(\"atQuestion\")+1);",
+							"if (pm.globals.get(\"atQuestion\") !=pm.globals.get(\"numOfQuestions\")){",
+							"    postman.setNextRequest(\"Get  Questionnaire\");",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/doanswer/:questionnaireID/:questionID/:session/:optionID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"doanswer",
+						":questionnaireID",
+						":questionID",
+						":session",
+						":optionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "{{questionnaireID}}"
+						},
+						{
+							"key": "questionID",
+							"value": "NVV"
+						},
+						{
+							"key": "session",
+							"value": "{{session}}"
+						},
+						{
+							"key": "optionID",
+							"value": "{{optionID}} "
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Session Answers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/getsessionanswers/:questionnaireID/:session",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getsessionanswers",
+						":questionnaireID",
+						":session"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "{{questionnaireID}}"
+						},
+						{
+							"key": "session",
+							"value": "{{session}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Non Valid Questionnaire(Get Session Answers)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 402 for non valid questionnaire\", function () {",
+							"    pm.response.to.have.status(402);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/getsessionanswers/:questionnaireID/:session",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getsessionanswers",
+						":questionnaireID",
+						":session"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "NVV"
+						},
+						{
+							"key": "session",
+							"value": "{{session}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Non Valid Session(Get Session Answers)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 402 for non valid session\", function () {",
+							"    pm.response.to.have.status(402);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/getsessionanswers/:questionnaireID/:session",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getsessionanswers",
+						":questionnaireID",
+						":session"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "{{questionnaireID}}"
+						},
+						{
+							"key": "session",
+							"value": "NVV"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Question Answers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/getquestionanswers/:questionnaireID/:questionID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getquestionanswers",
+						":questionnaireID",
+						":questionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "{{questionnaireID}}"
+						},
+						{
+							"key": "questionID",
+							"value": "{{questionID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Non Valid Question (Get Question Answers)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 402 for non valid question\", function () {",
+							"    pm.response.to.have.status(402);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/getsessionanswers/:questionnaireID/:questionID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getsessionanswers",
+						":questionnaireID",
+						":questionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "{{questionnaireID}}"
+						},
+						{
+							"key": "questionID",
+							"value": "NVV"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Non Valid Questionnaire (Get Question Answers)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 402 for non valid questionnaire\", function () {",
+							"    pm.response.to.have.status(402);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/getsessionanswers/:questionnaireID/:questionID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"getsessionanswers",
+						":questionnaireID",
+						":questionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "NVV"
+						},
+						{
+							"key": "questionID",
+							"value": "{{questionID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Non Valid Questionnaire (Get Question Answers) Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400 for non valid questionnaire\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/admin/resetall",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"resetall"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:9103"
+		}
+	]
+}

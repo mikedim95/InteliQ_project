@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: se2250
+Version: 0.0.1
+Author: se2250
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
